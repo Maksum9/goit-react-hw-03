@@ -1,4 +1,12 @@
-const  SeacrhBox = () => {
+import React from 'react';
 
-}
-export default SeacrhBox;
+const SearchBox = ({ value, onChange }) => {
+  return (
+    <div>
+      <label htmlFor="search">Search:</label>
+      <input type="text" id="search" value={value} onChange={onChange} />
+    </div>
+  );
+};
+
+export default SearchBox;
