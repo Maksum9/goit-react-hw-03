@@ -1,8 +1,5 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
 import ContactList from './components/ContactList/ContactList';
 import SearchBox from './components/SearchBox/SearchBox';
 import ContactForm from './components/ContactForm/ContactForm';
@@ -16,6 +13,13 @@ const App = () => {
   ]);
 
   const [filter, setFilter] = useState('');
+
+  useEffect(() => {
+    const storedContacts = JSON.parse(localStorage.getItem('contacts'));
+    if (storedContacts) {
+      setContacts(storedContacts);
+    }
+  }, []);
 
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
@@ -41,7 +45,9 @@ const App = () => {
     <div>
       <h1>Phonebook</h1>
       <ContactForm onAddContact={handleAddContact} />
+
       <SearchBox value={filter} onChange={handleFilterChange} />
+
       <ContactList contacts={filteredContacts} onDeleteContact={handleDeleteContact} />
     </div>
   );

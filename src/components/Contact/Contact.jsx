@@ -1,5 +1,4 @@
 
-
 const Contact = ({ contact, onDeleteContact }) => {
   return (
     <div>
